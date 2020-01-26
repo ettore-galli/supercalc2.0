@@ -168,7 +168,36 @@ class Euros {
         return this;
     }
 
+    safeIntDiv(a: number, b: number): { q: number, r: number } {
+        let ai = Math.floor(a);
+        let bi = Math.floor(b);
+        let rd = ai % bi;
+        let qd = (ai - rd) / bi;
+        return { q: qd, r: rd };
+    }
+    
+    /**
+     * 
+     * @param divisor Divisione
+     */
+    div(divisor: Euros): Euros {
+        /*
+        S=Scala
+                              h     k
+        (aS + b) / (cS + d) = a/c + (b/c - ad/c^2)S^-1
+        */
+        let a = this.getInteger();
+        let b = this.getFraction();
 
+        let c = divisor.getInteger();
+        let d = divisor.getFraction();
+
+        let hqr = this.safeIntDiv(a, c);
+
+
+        return this;
+
+    }
 
 }
 

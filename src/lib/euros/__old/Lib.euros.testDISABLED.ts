@@ -1,5 +1,26 @@
 import { Euros } from './euros';
 
+test('Safe Int Div / Basic', () => {
+
+  
+   
+   let test_cases = [
+      [6, 2, { q: 3, r: 0 }],
+      [6, 3, { q: 2, r: 0 }],
+      [17, 3, { q: 5, r: 2 }],
+      [2102892437735740, 8974293874, { q: 234324, r: 4564 }]
+   ]
+   let eu = new Euros("1"); 
+   for (let tc of test_cases) {
+      console.log("TEST SAFE INT DIV:", tc);
+      console.log(tc[0], tc[1])
+      let dq = eu.safeIntDiv(Number(tc[0]), Number(tc[1]));
+      expect(dq).toStrictEqual(tc[2]);
+   }
+
+
+});
+
 test('Basic Usage / Happy path', () => {
 
    let eu = new Euros("3.14");
